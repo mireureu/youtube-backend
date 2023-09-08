@@ -1,7 +1,16 @@
 package com.kh.youtube.domain;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Channel {
 	private int channelCode;
 	private String channelName;
@@ -9,72 +18,10 @@ public class Channel {
 	private String channelDesc;
 	private Date channelDate;
 	
+	//@ManyToOne // Channel 엔티티와 Member 엔티티를 다대일 관계로 설정
+	//다대일 관계 (한 멤버가 여러 채널을 가지고있다)
+	//@JoinColumn(name="member_id") //외래키 생성 or Member 엔티티의 기본키와 매핑
 	private Member member;
 
-	public Channel() {}
-
-	public Channel(int channelCode, String channelName, String channelPhoto, String channelDesc, Date channelDate,
-			Member member) {
-		this.channelCode = channelCode;
-		this.channelName = channelName;
-		this.channelPhoto = channelPhoto;
-		this.channelDesc = channelDesc;
-		this.channelDate = channelDate;
-		this.member = member;
-	}
-
-	public int getChannelCode() {
-		return channelCode;
-	}
-
-	public void setChannelCode(int channelCode) {
-		this.channelCode = channelCode;
-	}
-
-	public String getChannelName() {
-		return channelName;
-	}
-
-	public void setChannelName(String channelName) {
-		this.channelName = channelName;
-	}
-
-	public String getChannelPhoto() {
-		return channelPhoto;
-	}
-
-	public void setChannelPhoto(String channelPhoto) {
-		this.channelPhoto = channelPhoto;
-	}
-
-	public String getChannelDesc() {
-		return channelDesc;
-	}
-
-	public void setChannelDesc(String channelDesc) {
-		this.channelDesc = channelDesc;
-	}
-
-	public Date getChannelDate() {
-		return channelDate;
-	}
-
-	public void setChannelDate(Date channelDate) {
-		this.channelDate = channelDate;
-	}
-
-	public Member getMember() {
-		return member;
-	}
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
-
-	@Override
-	public String toString() {
-		return "Channel [channelCode=" + channelCode + ", channelName=" + channelName + ", channelPhoto=" + channelPhoto
-				+ ", channelDesc=" + channelDesc + ", channelDate=" + channelDate + ", member=" + member + "]";
-	}
-
+	
 }
