@@ -27,7 +27,7 @@ public class ChannelService {
         Channel channel = channelDAO.findById(id).orElse(null);
         Member member = memberDAO.findById(channel.getMember().getId()).orElse(null);
         channel.setMember(member);
-        return channel;c
+        return channel;
     }
 
     public Channel create(Channel channel) {
