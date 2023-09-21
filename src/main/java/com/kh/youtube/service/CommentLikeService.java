@@ -1,8 +1,8 @@
 package com.kh.youtube.service;
 
-import com.kh.youtube.domain.Category;
 import com.kh.youtube.domain.CommentLike;
 import com.kh.youtube.repo.CommentLikeDAO;
+import com.kh.youtube.repo.MemberDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,26 +12,36 @@ import java.util.List;
 public class CommentLikeService {
 
     @Autowired
-    private CommentLikeDAO dao;
+    private CommentLikeDAO commentLikeDAO;
 
-    public List<CommentLike> showAll(){
-        return dao.findAll();
-    }
-    public CommentLike show(int code){
-        return dao.findById(code).orElse(null);
-    }
-    public CommentLike create(CommentLike commentLike){
-        return dao.save(commentLike);
+    @Autowired
+    private MemberDAO memberDAO;
+
+    public List<CommentLike> showAll() {
+        return commentLikeDAO.findAll();
     }
 
-    public CommentLike update(CommentLike commentLike) {
-        return dao.save(commentLike);
+    public CommentLike show(int id){
+        return commentLikeDAO.findById(id).orElse(null);
+    }
 
+    public CommentLike create(CommentLike vo) {
+        return commentLikeDAO.save(vo);
     }
-    public CommentLike delete(int code){
-        CommentLike data = dao.findById(code).orElse(null);
-        dao.delete(data);
-        return data;
+
+    public CommentLike update(CommentLike vo) {
+        CommentLike target = commentLikeDAO.findById(vo.getCommLikeCode()).orElse(null);
+        if(target != null) {
+            return commentLikeDAO.save(vo);
+        }
+        return null;
     }
+
+    public CommentLike delete(int id) {
+        CommentLike target = commentLikeDAO.findById(id).orElse(null);
+        commentLikeDAO.delete(target);
+        return target;
+    }
+
 
 }

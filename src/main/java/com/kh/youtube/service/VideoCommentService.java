@@ -1,9 +1,7 @@
 package com.kh.youtube.service;
 
-import com.kh.youtube.domain.Video;
 import com.kh.youtube.domain.VideoComment;
 import com.kh.youtube.repo.VideoCommentDAO;
-import com.kh.youtube.repo.VideoDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,24 +13,34 @@ public class VideoCommentService {
     @Autowired
     private VideoCommentDAO dao;
 
-    public List<VideoComment> showAll(){
+    public List<VideoComment> showAll() {
         return dao.findAll();
     }
-    public VideoComment show(int code){
-        return dao.findById(code).orElse(null);
-    }
-    public VideoComment create(VideoComment videocomment){
-        return dao.save(videocomment);
+
+    public VideoComment show(int id){
+        return dao.findById(id).orElse(null);
     }
 
-    public VideoComment update(VideoComment videocomment) {
-        return dao.save(videocomment);
-
+    public VideoComment create(VideoComment vo) {
+        return dao.save(vo);
     }
-    public VideoComment delete(int code){
-        VideoComment data = dao.findById(code).orElse(null);
-        dao.delete(data);
-        return data;
+
+    public VideoComment update(VideoComment vo) {
+        VideoComment target = dao.findById(vo.getCommentCode()).orElse(null);
+        if(target != null) {
+            return dao.save(vo);
+        }
+        return null;
+    }
+
+    public VideoComment delete(int id) {
+        VideoComment target = dao.findById(id).orElse(null);
+        dao.delete(target);
+        return target;
+    }
+
+    public List<VideoComment> findByVideoCode(int code) {
+        return dao.findByVideoCode(code);
     }
 
 }

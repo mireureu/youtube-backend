@@ -15,20 +15,21 @@ import java.util.Date;
 @DynamicInsert
 public class VideoLike {
 
-	@Id
-	@Column(name="v_like_code")
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "vlikeSeq")
-	@SequenceGenerator(name="vlikeSeq", sequenceName = "SEQ_VIDEO_LIKE", allocationSize = 1)
-	private int vLikeCode;
+    @Id
+    @Column(name = "v_like_code")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "vLikeSequence")
+    @SequenceGenerator(name = "vLikeSequence", sequenceName = "SEQ_VIDEO_LIKE", allocationSize = 1)
+    private int vLikeCode;
 
-	@Column(name="v_like_date")
-	private Date vLikeDate;
+    @Column(name = "v_like_date")
+    private Date vLikeDate;
 
-	@ManyToOne
-	@JoinColumn(name="video_code")
-	private Video video;
-	@ManyToOne
-	@JoinColumn(name="id")
-	private Member member;
+    @ManyToOne
+    @JoinColumn(name = "video_code")
+    private Video video;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Member member;
 
 }

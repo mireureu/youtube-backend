@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.util.Date;
 
@@ -11,26 +12,29 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamicInsert
 public class VideoComment {
 
-	@Id
-	@Column(name="comment_code")
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator ="videoCommSeq")
-	@SequenceGenerator(name = "videoCommSeq", sequenceName = "SEQ_VIDEO_COMMENT", allocationSize = 1)
-	private int commentCode;
+    @Id
+    @Column(name = "comment_code")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "videoCommSequence")
+    @SequenceGenerator(name = "videoCommSequence", sequenceName = "SEQ_VIDEO_COMMENT", allocationSize = 1)
+    private int commentCode;
 
-	@Column(name="comment_desc")
-	private String commentDesc;
-	@Column(name="comment_date")
-	private Date commentDate;
-	@Column(name="comment_parent")
-	private int commentParent;
+    @Column(name = "comment_desc")
+    private String commentDesc;
 
-	@ManyToOne
-	@JoinColumn(name="video_code")
-	private Video video;
-	@ManyToOne
-	@JoinColumn(name="id")
-	private Member member;
+    @Column(name = "comment_Date")
+    private Date commentDate;
 
+    @Column(name = "comment_parent")
+    private int commentParent;
+
+    @ManyToOne
+    @JoinColumn(name = "video_code")
+    private Video video;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Member member;
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/*")
+@CrossOrigin(origins = {"*"}, maxAge = 6000)
 public class CategoryController {
 
     @Autowired
@@ -20,16 +21,16 @@ public class CategoryController {
     public ResponseEntity<List<Category>> showAll() {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.showAll());
-        } catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // .build = body(null) 같음
         }
     }
 
     @GetMapping("/category/{id}")
-    public ResponseEntity<Category> show(@PathVariable int id){
+    public ResponseEntity<Category> show(@PathVariable int id) {
         try {
             return ResponseEntity.status(HttpStatus.OK).body(service.show(id));
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -61,4 +62,5 @@ public class CategoryController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
 }

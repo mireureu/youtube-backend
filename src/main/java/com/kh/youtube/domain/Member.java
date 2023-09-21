@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Data
@@ -16,14 +15,17 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 public class Member {
 
-	@Id
-	private String id;
+    @Id
+    private String id;
 
-	@Column
-	private String password;
-	@Column
-	private String name;
-	@Column
-	private String authority;
+    @Column
+    private String password;
+
+    @Column
+    private String name;
+
+    @Column
+    private String authority;
+
 
 }

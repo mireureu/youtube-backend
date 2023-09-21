@@ -10,27 +10,26 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name="COMMENT_LIKE")
 @NoArgsConstructor
 @AllArgsConstructor
 @DynamicInsert
 public class CommentLike {
-	@Id
-	@Column(name="comm_like_code")
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "likeSequence")
-	@SequenceGenerator(name="likeSequence", sequenceName = "SEQ_COMMENT_LIKE", allocationSize = 1)
-	private int commLikeCode;
 
-	@Column(name="comm_like_date")
-	private Date commLikeDate;
+    @Id
+    @Column(name = "comm_like_code")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "commLikeSequence")
+    @SequenceGenerator(name = "commLikeSequence", sequenceName = "SEQ_COMMENT_LIKE", allocationSize = 1)
+    private int commLikeCode;
 
-	@ManyToOne
-	@JoinColumn(name="comment_code")
-	private VideoComment comment;
+    @Column(name = "comm_like_date")
+    private Date commLikeDate;
 
-	@ManyToOne
-	@JoinColumn(name="id")
-	private Member member;
+    @ManyToOne
+    @JoinColumn(name = "comment_code")
+    private VideoComment comment;
 
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Member member;
 
 }
