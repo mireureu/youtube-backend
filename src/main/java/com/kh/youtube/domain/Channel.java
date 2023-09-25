@@ -24,7 +24,7 @@ public class Channel {
     @Column(name = "channel_name")
     private String channelName;
 
-    @Column(name = "channel_poto")
+    @Column(name = "channel_photo")
     private String channelPhoto;
 
     @Column(name = "channel_desc")
